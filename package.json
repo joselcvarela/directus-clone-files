@@ -1,0 +1,38 @@
+{
+  "name": "directus-clone-files",
+  "version": "1.0.0",
+  "description": "Directus Clone Files is a CLI tool that provides a way to sync files between two different projects",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx --watch src/index.ts",
+    "build": "tsc"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joselcvarela/directus-clone-files.git"
+  },
+  "keywords": [
+    "directus",
+    "clone",
+    "files",
+    "assets",
+    "sync",
+    "synchronization"
+  ],
+  "author": "José Varela",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joselcvarela/directus-clone-files/issues"
+  },
+  "homepage": "https://github.com/joselcvarela/directus-clone-files#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "inquirer": "^12.1.0"
+  },
+  "devDependencies": {
+    "add": "^2.0.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
