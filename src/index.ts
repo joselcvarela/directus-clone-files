@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import "./config/axios";
 import { Command } from "commander";
 import { sync_command } from "./commands";
