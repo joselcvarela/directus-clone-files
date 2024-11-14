@@ -3,6 +3,7 @@ declare global {
     id: string;
     filename_download: string;
     filesize: string;
+    type: string;
   }
 }
 

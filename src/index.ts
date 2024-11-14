@@ -1,19 +1,17 @@
-import { get_project, logout, sleep, import_file } from "./utils";
-import { get_files } from "./utils/get-files";
+import "./config/axios";
+import { Command } from "commander";
+import { sync_command } from "./commands";
 
 async function start() {
-  const source = await get_project("Source");
-  const destination = await get_project("Destination");
+  const program = new Command();
 
-  for await (const chunk of get_files(source)) {
-    await Promise.all(
-      chunk.map((file) => import_file(file, source, destination))
-    );
-    await sleep(250);
+  for (const [flags, description] of sync_command.options) {
+    program.option(flags, description);
   }
 
-  await logout(source);
-  await logout(destination);
+  program.action(sync_command.action);
+
+  program.parse();
 }
 
 start();
