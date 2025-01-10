@@ -1,5 +1,7 @@
+import { get_folders } from "src/utils/get-folders";
 import { get_project, logout, sleep, import_file } from "../utils";
 import { get_files } from "../utils/get-files";
+import { import_folder } from "src/utils/import_folder";
 
 const OPTIONS = {
   source_url: "",
@@ -36,6 +38,16 @@ async function sync(options = OPTIONS) {
       .then((r) => r.data.data);
 
     destination.folder_id = folder.id;
+  }
+
+  console.log("Starting importing folders (ordered by ID)...");
+  for await (const chunk of get_folders(source)) {
+    await Promise.all(
+      chunk.map((folder) => import_folder(folder, source, destination))
+    );
+
+    console.log(`Imported ${chunk[0].id}, 9+`);
+    await sleep(wait_between_chunks);
   }
 
   console.log("Starting importing files (ordered by ID)...");

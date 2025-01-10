@@ -1,15 +1,15 @@
 import type { AxiosResponse } from "axios";
 
-export async function* get_files(project: Project) {
-  let response: AxiosResponse<DirectusFile[]>;
+export async function* get_folders(project: Project) {
+  let response: AxiosResponse<DirectusFolder[]>;
   const MAX = 10;
   let page = 1;
 
   do {
     response = await project.axios
-      .get("/files", {
+      .get("/folders", {
         params: {
-          fields: ["id", "filename_download", "filesize", "type", "folder"],
+          fields: ["id", "name", "parent"],
           limit: MAX,
           sort: "id",
           page: page++,
