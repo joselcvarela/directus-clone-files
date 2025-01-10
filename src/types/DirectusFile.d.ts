@@ -4,6 +4,7 @@ declare global {
     filename_download: string;
     filesize: string;
     type: string;
+    folder: string;
   }
 }
 

@@ -31,7 +31,7 @@ export async function import_file(
         id: file.id,
         type: file.type,
         filename_download: file.filename_download,
-        folder: destination.folder_id,
+        folder: file.folder,
       },
     },
     { headers: { Authorization: `Bearer ${destination.token}` } }
