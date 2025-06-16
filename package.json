@@ -1,6 +1,6 @@
 {
   "name": "directus-clone-files",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Directus Clone Files is a CLI tool that provides a way to sync files between two different projects",
   "main": "index.js",
   "bin": "dist/index.js",
