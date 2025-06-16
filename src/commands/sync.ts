@@ -1,5 +1,5 @@
 import { get_folders } from "src/utils/get-folders";
-import { get_project, logout, sleep, import_file } from "../utils";
+import { get_project, sleep, import_file } from "../utils";
 import { get_files } from "../utils/get-files";
 import { import_folder } from "src/utils/import_folder";
 
@@ -63,8 +63,7 @@ async function sync(options = OPTIONS) {
 
   console.log("Logging out...");
 
-  await logout(source);
-  await logout(destination);
+  await Promise.all([source.logout(), destination.logout()]);
 
   console.log("Done");
 }
