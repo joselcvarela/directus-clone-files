@@ -11,6 +11,7 @@ const OPTIONS = {
   destination_email: "",
   destination_password: "",
   wait: "250",
+  chunk_size: "10",
 };
 
 async function sync(options = OPTIONS) {
@@ -51,7 +52,9 @@ async function sync(options = OPTIONS) {
   }
 
   console.log("Starting importing files (ordered by ID)...");
-  for await (const chunk of get_files(source)) {
+  for await (const chunk of get_files(source, {
+    chunkSize: parseInt(options.chunk_size),
+  })) {
     await Promise.all(
       chunk.map((file) => import_file(file, source, destination))
     );
@@ -87,6 +90,7 @@ export const sync_command = {
       "Directus User Email with access to create and read assets/files",
     ],
     ["--wait <wait>", "Time to wait between chunks"],
+    ["--chunk_size <size>", "Amount of files to be transferred at once"],
   ],
   action: async (options: any) => {
     await sync(options);

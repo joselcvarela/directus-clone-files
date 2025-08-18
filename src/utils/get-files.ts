@@ -1,8 +1,12 @@
 import type { AxiosResponse } from "axios";
 
-export async function* get_files(project: Project) {
+interface Params {
+  chunkSize?: number;
+}
+
+export async function* get_files(project: Project, params: Params) {
   let response: AxiosResponse<DirectusFile[]>;
-  const MAX = 10;
+  const MAX = params.chunkSize || 10;
   let page = 1;
 
   do {
